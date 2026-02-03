@@ -14,6 +14,7 @@ exchangeButton.onclick = () => {
 
     if (!firstVal || firstVal <= 0) {
         alert("Please enter a valid INR amount and select a currency.");
+        
         return;
     }
     let url = "https://api.exchangerate-api.com/v4/latest/INR";
@@ -34,11 +35,9 @@ exchangeButton.onclick = () => {
 
 
 
-
-
 }
 function transverse(){
-    if(convertBar.value != 0 && resultOutput.value != 0){
+    if(convertBar.value != 0 && resultOutput.value > 0){
         payButton.disabled = false;
           window.location.href = "payment.html";
     }
@@ -48,22 +47,39 @@ function transverse(){
 }
 
  
- function pay() {
-      let cardName = document.getElementById('cardName').value.trim();
-      let number = document.getElementById('number').value.trim();
-      let cvv = document.getElementById('cvv').value.trim();
-      let cardsDetails = JSON.parse(localStorage.getItem("cardDetails"));
-      
-      if (!cardsDetails) {
-            alert("card details are not saved or invalid.");
+ function pay() { 
+
+    //   event.preventDefault();
+    // document.getElementById("loadingOverlay").style.display = "flex";
+
+    // setTimeout(() => {
+    //     document.getElementById("loadingOverlay").style.display = "none";
+
+        let cardName = document.getElementById('cardName').value.trim();
+        let number = document.getElementById('number').value.trim();
+        let cvv = document.getElementById('cvv').value.trim();
+        let cardsDetails = JSON.parse(localStorage.getItem("cardDetails"));
+
+        if (!cardsDetails) {
+            alert("Card details are not saved or invalid.");
             return;
-      }
-      else if(cardName === cardsDetails.name && number === cardsDetails.cardNumber && cvv === cardsDetails.CVV) {
-            alert("Payment Successful! Thank you for your transaction.");
-      }
-      else{
-            alert("Invalid card details. Please try again.");
-      }
+        }
+        else if (cardName === cardsDetails.name && number === cardsDetails.cardNumber && cvv === cardsDetails.CVV) {
+            document.getElementById("loadingOverlay").style.display = "flex";
+            event.preventDefault()
+            setTimeout(() => {
+    
+        document.getElementById("loadingOverlay").style.display = "none";
+        alert(" Payment Successful! Thank you for your transaction."); 
+    }, 2000);
+
+            // alert(" Payment Successful! Thank you for your transaction.");
+        }
+        else {
+            alert(" Invalid card details. Please try again.");
+        }
+    
+
 }
 
 function back() {

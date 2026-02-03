@@ -10,7 +10,7 @@
 </head>
 <body>
 
-  <div class="payment-form">
+  <div class=" login-card payment-form">
     <h2 class="text-center mb-4">Payment Via Card</h2>
     <form id="paymentForm">
     <div class="mb-3">
@@ -29,14 +29,18 @@
     </div>
 
     
-     <button class="payButton" onclick="pay()" id="bill">Pay Now</button>    
+     <button class="payButton" onclick="pay()" type="button" id="bill">Pay Now</button>    
     </form>
     <!-- <button class="payButton" onclick="pay()" id="bill">Pay Now</button> -->
     <!-- <p id="para"></p> -->
      <button class="payButton" onclick="back()" id="back">back</button> 
   </div>
 
-
+ 
+    <div id="loadingOverlay">
+       <div class="spinner"></div>
+       <p>payment in process</p>
+     </div>
   <script src="card.js"></script>
   <script src="convertion.js"></script>
 </body>
