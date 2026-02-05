@@ -35,7 +35,7 @@ function next() {
   } 
   else {
     error.style.color = "red";
-    error.textContent = "Invalid credentials. Please try again.";
+    error.textContent = "sign up to proceed.";
     setTimeout(() => {
     error.textContent = "";
   }, 1000);
@@ -63,16 +63,17 @@ function loginpage(){
       let storedUser = JSON.parse(localStorage.getItem("userDetails"));
       
       count++;
+      let turns = maxClicks - count;
       if (storedUser && email.value === storedUser.username && Userpassword.value === storedUser.password) {
         window.location.href = "convertion.html";
         
       } 
       else{
          error.style.color = "red";
-           error.textContent = "Invalid credentials. Please try again.";
+           error.textContent = `Invalid credentials. You have left with ${turns} attempts`;
            setTimeout(() => {
            error.textContent = "";
-  }, 1000);
+  }, 2000);
         //       button.disabled = true;
         // message.textContent = "you have left with no more attempts.";
        }

@@ -54,12 +54,13 @@ function transverse(){
 
     // setTimeout(() => {
     //     document.getElementById("loadingOverlay").style.display = "none";
+       
 
         let cardName = document.getElementById('cardName').value.trim();
         let number = document.getElementById('number').value.trim();
         let cvv = document.getElementById('cvv').value.trim();
         let cardsDetails = JSON.parse(localStorage.getItem("cardDetails"));
-
+        
         if (!cardsDetails) {
             alert("Card details are not saved or invalid.");
             return;
@@ -68,9 +69,12 @@ function transverse(){
             document.getElementById("loadingOverlay").style.display = "flex";
             event.preventDefault()
             setTimeout(() => {
-    
+                 
+             let transactionId = Math.floor(Math.random() * 100000000000);
         document.getElementById("loadingOverlay").style.display = "none";
-        alert(" Payment Successful! Thank you for your transaction."); 
+        alert(` Payment Successful! Thank you for your transaction.\n
+            Your transaction ID:  ${transactionId}.
+            `); 
     }, 2000);
 
             // alert(" Payment Successful! Thank you for your transaction.");
